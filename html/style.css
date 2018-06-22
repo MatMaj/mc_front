@@ -1,0 +1,81 @@
+/*Plik CSS do mikroserwisu*/
+
+*{ /*każdy element*/
+    margin: 0px;
+    padding: 0px;
+    font-family: "Calibri";
+}
+/*CSS DLA NAGŁÓWKA*/
+#header{ /*DIV*/
+    width: 100%;
+    height: 120px;
+    border-bottom: 1px solid black;
+}
+#header > h1{  /*nazwa*/
+    text-align: center;
+    font-size: 45px;
+    font-style: oblique;
+    font-weight: bold;
+}
+#header > h3{  /*twórcy*/
+    text-align: center;
+    margin-top: 5px;
+    font-size: 17px;
+}
+/*CSS DLA DIVA GŁÓWNEGO*/
+#article{ /*DIV*/
+    width: 100%;
+    height: 460px;
+    border-bottom: 1px solid ;
+}
+    /*DIV zawierający obrazek walca oraz napis*/
+    #top{ /*DIV*/
+        width: 100%;
+        height: 180px;
+        text-align: center;
+        float: left;
+    }
+    #top > img{ /*obrazek walca*/
+        position: relative;
+        margin-top: 10px;
+        z-index: 1;
+    }
+    #top > p{ /*napis*/
+        position: relative;
+        font-weight: bold;
+        z-index: 2;
+    }
+    /*DIV zawierający formularz*/
+    #bottom{ /*DIV*/
+        width: 100%;
+        height: 320px;
+        text-align: center;
+        float: left;
+    }
+    #bottom > form{ /*formularz*/
+        width: 100%;
+        margin: 0px;
+        padding: 0px;
+    }
+    #bottom > form > p{ /*odnosi się do wszystkich akapitów w formularzu*/
+        margin: 3px;
+        font-size: 18px;
+    }
+    input{ /*odnosi się do wszystkich inputów*/
+        font-size: 15px;
+    }
+    input[type="submit"], input[type="reset"]{ /*odnosi się do inputów o typie submit oraz reset*/
+        margin: 3px;
+        width: 60px;
+
+    }
+    #wynik{ /*input zawierający wynik obliczenia*/
+        margin-top: 8px;
+        width: 256px;
+        height: 32px;
+        border: none;
+        background-color: rgba(192, 192, 192, 0.75);
+        text-align: center;
+        font-size: 21px;
+        cursor: default;
+    }

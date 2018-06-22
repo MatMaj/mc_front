@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pl_PL">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Mikroserwis</title>
+		<link rel="stylesheet" type="text/css" media="screen" href="style.css"/>
+		<!--Dodanie do dokumentu socket.io do komunikacji z serwerem oraz JQuery-->
+		<script src="https://cdn.socket.io/socket.io-1.7.3.js"></script>
+		<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+	</head>
+	<body>
+		<!-- NAGŁÓWEK zawierający nazwę oraz twórców -->
+		<div id="header">
+			<h1>Mikroserwis</h1>
+			<h3>
+				Jakub Melkowski, 
+				Mateusz Majewski, 
+				Łukasz Szadowski, 
+				Krystian Bursztyński, 
+				Stanisław Rubaj
+			</h3>
+		</div>
+		<!--DIV GŁÓWNY zwierający dwa divy(top oraz bottom)
+				DIV #top zawiera obrazek z walcem oraz napis
+				DIV #bottom zawiera formularz, gdzie podaje się wyskość(#wys), promień(#pro)
+					oraz input(#wynik), ustawiony tylko na czytanie, gdzie zapisywany jest wynik-->
+		<div id="article">
+				<div id="top">
+					<p>Obliczanie objętości walca</p>
+					<img src="walec.png" alt="Obrazek walca">
+				</div>
+				<div id="bottom">
+					<form>
+						<p> 
+							Wysokość:
+							<input type="text" id="wys" autocomplete="off">
+						</p>
+						<p>
+							Promień:
+							<input type="text" id="pro" autocomplete="off">
+						</p>
+						<input type="submit" value="Oblicz">
+						<input type="reset" value="Reset">
+						<p>
+							<input type="text" readonly="readonly" value="Wynik" id="wynik">
+						</p>
+					</form>
+				</div>
+		</div>
+
+		<script>
+			// Funkcja łącząca się z serwerem pod ip: localhost:8181
+			// Wysyła do serwera dane o wysokości oraz promieniu
+			// Odbiera odpowiedź od serwera(wynik obliczenia) i zapisuje #wynik
+			$(function () {
+				var socket = io.connect('http://localhost:8181/');
+				$('form').submit(function(){
+					socket.emit('dane', {wysokosc: $('#wys').val(), promien: $('#pro').val()});
+					return false;
+				});
+				socket.on('wynik', function(wynik){
+					$('#wynik').val(wynik);
+				});
+			});
+		</script>
+	</body>
+</html>
